@@ -1,0 +1,123 @@
+CREATE TABLE IF NOT EXISTS Authors (
+    id serial PRIMARY KEY,
+    first_name VARCHAR(100),
+	last_name VARCHAR(100),
+	birth_date date,
+	death_date date
+);
+CREATE TABLE IF NOT EXISTS Books (
+    id serial PRIMARY KEY,
+    author_id INT references Authors(id),
+    Name VARCHAR(100)
+);
+CREATE TABLE IF NOT EXISTS Titles (
+    id serial PRIMARY KEY,
+    book_id INT references Books(id),
+    name VARCHAR(100),
+	page INT
+);
+CREATE TABLE IF NOT EXISTS Languages (
+    id serial PRIMARY KEY,
+    language VARCHAR(100)
+);
+CREATE TABLE IF NOT EXISTS Translaters (
+    id serial PRIMARY KEY,
+	first_name VARCHAR(100),
+	last_name VARCHAR(100),
+	book_id INT references Books(id),
+    language_id INT references Languages(id)
+);
+
+INSERT INTO Authors(id, first_name, last_name, birth_date, death_date) VALUES(1, 'Jack', 'London', date('1876-01-12'), date('1916-11-22'));
+INSERT INTO Authors(id, first_name, last_name, birth_date, death_date) VALUES(2, 'Honore de', 'Balzac', date('1799-05-20'), date('1850-08-18'));
+INSERT INTO Authors(id, first_name, last_name, birth_date, death_date) VALUES(3, 'Lion', 'Feuchtwanger', date('1884-07-07'), date('1958-12-21'));
+INSERT INTO Authors(id, first_name, last_name, birth_date, death_date) VALUES(4, 'Emile', 'Zola', date('1840-04-02'), date('1902-09-29'));
+INSERT INTO Authors(id, first_name, last_name, birth_date, death_date) VALUES(5, 'Truman', 'Capote', date('1924-09-30'), date('1984-08-25'));
+
+INSERT INTO Books(id, author_id, Name) VALUES(1, 1, 'Call of the Wild');
+INSERT INTO Books(id, author_id, Name) VALUES(2, 1, 'Martin Eden');
+INSERT INTO Books(id, author_id, Name) VALUES(3, 2, 'Old Goriot');
+INSERT INTO Books(id, author_id, Name) VALUES(4, 2, 'Cousin Bette');
+INSERT INTO Books(id, author_id, Name) VALUES(5, 3, 'Jew Suess');
+INSERT INTO Books(id, author_id, Name) VALUES(6, 4, 'Nana');
+INSERT INTO Books(id, author_id, Name) VALUES(7, 4, 'The Belly of Paris');
+INSERT INTO Books(id, author_id, Name) VALUES(8, 5, 'In Cold blood');
+INSERT INTO Books(id, author_id, Name) VALUES(9, 5, 'Breakfast at Tiffany');
+
+INSERT INTO Titles(id, book_id, name, page) VALUES(1, 1, 'Call of the Wild: Part 1', 67);
+INSERT INTO Titles(id, book_id, name, page) VALUES(2, 1, 'Call of the Wild: Part 2', 132);
+INSERT INTO Titles(id, book_id, name, page) VALUES(3, 2, 'Martin Eden: Part 1', 101);
+INSERT INTO Titles(id, book_id, name, page) VALUES(4, 2, 'Martin Eden: Part 2', 202);
+INSERT INTO Titles(id, book_id, name, page) VALUES(5, 3, 'Old Goriot: Part 1', 166);
+INSERT INTO Titles(id, book_id, name, page) VALUES(6, 3, 'Old Goriot: Part 2', 271);
+INSERT INTO Titles(id, book_id, name, page) VALUES(7, 4, 'Cousin Bette: Part 1', 56);
+INSERT INTO Titles(id, book_id, name, page) VALUES(8, 4, 'Cousin Bette: Part 2', 101);
+INSERT INTO Titles(id, book_id, name, page) VALUES(9, 5, 'Jew Suess: Part 1', 71);
+INSERT INTO Titles(id, book_id, name, page) VALUES(10, 5, 'Jew Suess: Part 2', 122);
+INSERT INTO Titles(id, book_id, name, page) VALUES(11, 6, 'Nana: Part 1', 32);
+INSERT INTO Titles(id, book_id, name, page) VALUES(12, 6, 'Nana: Part 2', 72);
+INSERT INTO Titles(id, book_id, name, page) VALUES(13, 7, 'The Belly of Paris: Part 1', 202);
+INSERT INTO Titles(id, book_id, name, page) VALUES(14, 7, 'The Belly of Paris: Part 2', 321);
+INSERT INTO Titles(id, book_id, name, page) VALUES(15, 8, 'In Cold blood: Part 1', 256);
+INSERT INTO Titles(id, book_id, name, page) VALUES(16, 8, 'In Cold blood: Part 2', 403);
+INSERT INTO Titles(id, book_id, name, page) VALUES(17, 9, 'Breakfast at Tiffany: Part 1', 301);
+INSERT INTO Titles(id, book_id, name, page) VALUES(18, 9, 'Breakfast at Tiffany: Part 2', 512);
+
+INSERT INTO Languages(id, language) VALUES(1, 'English');
+INSERT INTO Languages(id, language) VALUES(2, 'French');
+INSERT INTO Languages(id, language) VALUES(3,  'German');
+
+INSERT INTO Translaters(id, first_name, last_name, book_id, language_id) VALUES(1, 'Dmitry', 'Odintsov', 1, 1);
+INSERT INTO Translaters(id, first_name, last_name, book_id, language_id) VALUES(2, 'Dmitry', 'Odintsov', 2, 1);
+INSERT INTO Translaters(id, first_name, last_name, book_id, language_id) VALUES(3, 'Alina', 'Ilimbetova', 3, 2);
+INSERT INTO Translaters(id, first_name, last_name, book_id, language_id) VALUES(4, 'Alina', 'Ilimbetova', 4, 2);
+INSERT INTO Translaters(id, first_name, last_name, book_id, language_id) VALUES(5, 'Aydar', 'Fattakhov', 5, 3);
+INSERT INTO Translaters(id, first_name, last_name, book_id, language_id) VALUES(6, 'Alina', 'Ilimbetova', 6, 2);
+INSERT INTO Translaters(id, first_name, last_name, book_id, language_id) VALUES(7, 'Alina', 'Ilimbetova', 7, 2);
+INSERT INTO Translaters(id, first_name, last_name, book_id, language_id) VALUES(8, 'Dmitry', 'Odintsov', 8, 1);
+INSERT INTO Translaters(id, first_name, last_name, book_id, language_id) VALUES(9, 'Dmitry', 'Odintsov', 9, 1);
+INSERT INTO Translaters(id, first_name, last_name, book_id, language_id) VALUES(10, 'Dmitry', 'Odintsov', 6, 1);
+
+DROP TABLE Translaters;
+
+CREATE TABLE IF NOT EXISTS Translaters (
+    id serial PRIMARY KEY,
+	first_name VARCHAR(100),
+	last_name VARCHAR(100)
+);
+INSERT INTO Translaters(id, first_name, last_name) VALUES(1, 'Dmitry', 'Odintsov');
+INSERT INTO Translaters(id, first_name, last_name) VALUES(2, 'Alina', 'Ilimbetova');
+INSERT INTO Translaters(id, first_name, last_name) VALUES(3, 'Aydar', 'Fattakhov');
+
+CREATE TABLE IF NOT EXISTS Books_And_Translaters (
+	translater_id INT references Translaters(id),
+	book_id INT references Books(id),
+    language_id INT references Languages(id)
+);
+
+INSERT INTO Books_And_Translaters(translater_id, book_id, language_id) VALUES(1, 1, 1);
+INSERT INTO Books_And_Translaters(translater_id, book_id, language_id) VALUES(1, 2, 1);
+INSERT INTO Books_And_Translaters(translater_id, book_id, language_id) VALUES(2, 3, 2);
+INSERT INTO Books_And_Translaters(translater_id, book_id, language_id) VALUES(2, 4, 2);
+INSERT INTO Books_And_Translaters(translater_id, book_id, language_id) VALUES(3, 5, 3);
+INSERT INTO Books_And_Translaters(translater_id, book_id, language_id) VALUES(2, 6, 2);
+INSERT INTO Books_And_Translaters(translater_id, book_id, language_id) VALUES(2, 7, 2);
+INSERT INTO Books_And_Translaters(translater_id, book_id, language_id) VALUES(1, 8, 1);
+INSERT INTO Books_And_Translaters(translater_id, book_id, language_id) VALUES(1, 9, 1);
+
+
+
+SELECT *
+FROM titles t
+JOIN books b ON b.id = t.book_id JOIN authors a ON a.id = b.author_id
+WHERE t.page % 2 = 0 
+AND ((SELECT EXTRACT(YEAR FROM a.birth_date::timestamp) BETWEEN 1950 AND 2000) 
+	  OR (SELECT EXTRACT (YEAR FROM a.death_date::timestamp) BETWEEN 1950 AND 2000));
+
+INSERT INTO Books_And_Translaters(translater_id, book_id, language_id) VALUES(1, 6, 1);
+
+SELECT b.Name, (SELECT MAX(b_t.book_id) FROM Books_And_Translaters) AS max_b_t
+FROM Books b
+JOIN Books_And_Translaters b_t ON b_t.book_id = b.id
+GROUP BY b.Name, max_b_t
+;
